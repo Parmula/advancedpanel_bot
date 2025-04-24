@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+</head>
+<body>
+  <h1>Привет, Админ!</h1>
+  <textarea id="payload" placeholder="Введите данные"></textarea><br>
+  <button id="send">Сохранить в БД</button>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();  // разворачиваем WebView на весь экран
+    document.getElementById('send').onclick = () => {
+      const data = { action: 'save', text: document.getElementById('payload').value };
+      tg.sendData(JSON.stringify(data));  // отправляем бот-сообщение с web_app_data
+    };
+  </script>
+</body>
+</html>
